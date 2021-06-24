@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :categories
+  resources :comments
+  get '/test', to: 'category#index'
   ## route for testing first method
-  get '/test', to: 'users#test'
 end
