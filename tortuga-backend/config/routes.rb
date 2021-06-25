@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :categories
-  resources :comments
-  get '/test', to: 'category#index'
+  resources :comment
   ## route for testing first method
 end

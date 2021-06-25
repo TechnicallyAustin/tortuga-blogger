@@ -1,33 +1,48 @@
+console.log('category.js')
+
 const BACKEND_URL = 'http://localhost:3000';
-document.addEventListener('DomContentLoaded', function() {
-    console.log('Dom was loaded')
-    allCats()
-})
-let data;
-let newData;
-let allCats = function() {
-    fetch(`${BACKEND_URL}/categories`)
-    .then(function(result) {
-        return result 
+let allCategories;
+let fetchCategories = fetch(`${BACKEND_URL}/categories`)
+    .then(function(response) {
+        return response 
     })
     .then(function(response){
         data = response.json()
         return data 
     })
-    .then(function(json){
-        newData = json
-    return newData;
-    });
-}
-    
-    
+    .then(moreData => {
+        const dataName = moreData.map(singleData => singleData.title).join('\n');
+        //console.log(dataName)
+        return dataName
+    })
+    .then(function(createdFromData){
+        const allCategories = createdFromData
+        console.log(allCategories)
+    }).catch((error) => {
+        console.error(error)
+     })
+
+
+
+
+
+
+
+
     
 
 
 class Category {
-    constructor(title) {
-    this.title = title 
+    constructor(data) {
+    this.id = data.id
+    this.title = data.title
     }
     // test that we can get data from the backend
+
+    getId = function() {
+        for(const object of categoriesJson) {
+            console.log(object.id)
+            }
+    }
 
 }
