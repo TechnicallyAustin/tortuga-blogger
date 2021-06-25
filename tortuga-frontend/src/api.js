@@ -30,16 +30,67 @@ function addCategories(data){
 }
 
 function displayCategories(data) {
-    let ul = document.body.appendChild(document.createElement('ul')) // creats ul and assigns it to body 
+    let div = document.body.appendChild(document.createElement('div')) // creats div and assigns it to body
+    let ul = div.appendChild(document.createElement('ul'))
     let li = ul.appendChild(document.createElement('li')) // creates an li that is assigned to a ul
-    li.innerText = data.title
+    li.innerText = data.title   
 }
 
-function categoryEventListeners() {
+function addCategoryEventListeners() {
+let allLi = document.querySelectorAll('li')
      for(const singleLi of allLi){
         singleLi.addEventListener('click', function(){
-        console.log("I was clicked")
-        })
-        } 
-
+        console.log("The Category Title was clicked ")})
+    } 
 }
+
+function newCategoryFormEventListeners() {
+let formEl = document.getElementById("category-form")
+formEl.addEventListener('click', function(){
+    newCategoryForm()
+    //console.log('Render New Category Form')
+})
+} 
+
+
+function newCategoryForm() {
+    let form = document.body.appendChild(document.createElement('input'))
+    form.type = "text";
+    form.value = "";
+
+    
+}
+
+
+
+
+
+// Post Request obj
+const CategoryConfigObj = {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json"
+    },
+    body: JSON.stringify({
+        // object properties
+    })
+}
+
+function postNewCategory() {
+return fetch(CATEGORIES_URL, categoryConfigObj)
+.then(function(response) {
+    return response.json();
+})
+.then(function(object){
+    console.log(object)
+})
+.catch(function(error){
+    alert("There was an error with this request");
+    console.log(error.message);
+})
+}
+
+
+
+
