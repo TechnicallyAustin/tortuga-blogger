@@ -4,7 +4,6 @@ const BLOG_URL = `${BACKEND_URL}/blogs`;
 const CATEGORIES_URL = `${BACKEND_URL}/categories`;
 const formattedData = response => response.json();
 
-
 function fetchCategories() {
     return fetch(CATEGORIES_URL)
     .then(formattedData)
@@ -52,13 +51,22 @@ formEl.addEventListener('click', function(){
 })
 } 
 
-
 function newCategoryForm() {
-    let form = document.body.appendChild(document.createElement('input'))
+    let span = document.body.appendChild(document.createElement('span'))
+    let form = span.appendChild(document.createElement('input'))
     form.type = "text";
-    form.value = "";
+    form.value = "Enter a Category Name Here";
+    const submit = span.appendChild(document.createElement('button'))
+    submit.innerText = "Create Category"
+    submit.id = 'submit-button'
+    getUserInput(submit)
+}
 
-    
+function getUserInput() {
+    let submit = document.getElementById('submit-button')
+    submit.addEventListener('click',function(){
+        console.log("event listener for submit button. Run function to post submit data to rails")
+    })
 }
 
 
