@@ -4,6 +4,8 @@ const BLOG_URL = `${BACKEND_URL}/blogs`;
 const CATEGORIES_URL = `${BACKEND_URL}/categories`;
 const formattedData = response => response.json();
 
+
+
 function fetchCategories() {
     return fetch(CATEGORIES_URL)
     .then(formattedData)
@@ -30,15 +32,17 @@ function addCategories(data){
 
 function displayCategories(data) {
     let div = document.body.appendChild(document.createElement('div')) // creats div and assigns it to body
-    let ul = div.appendChild(document.createElement('ul'))
-    let li = ul.appendChild(document.createElement('li')) // creates an li that is assigned to a ul
-    li.innerText = data.title   
+    let h3 = document.body.appendChild(document.createElement('h3'))
+    h3.innerText = data.title
+    //let ul = h3.appendChild(document.createElement('ul'))
+    //let li = ul.appendChild(document.createElement('li')) // creates an li that is assigned to a ul
+    //li.innerText = data.title   
 }
 
 function addCategoryEventListeners() {
-let allLi = document.querySelectorAll('li')
-     for(const singleLi of allLi){
-        singleLi.addEventListener('click', function(){
+let allH = document.querySelectorAll('h3')
+     for(const singleH of allH){
+        singleH.addEventListener('click', function(){
         console.log("The Category Title was clicked ")})
     } 
 }
@@ -65,11 +69,17 @@ function newCategoryForm() {
 function getUserInput() {
     let submit = document.getElementById('submit-button')
     submit.addEventListener('click',function(){
-        console.log("event listener for submit button. Run function to post submit data to rails")
+        const newCategoryName = document.querySelector('input').value
+        // use newCategoryName to send to Rails via a fetch post
+        console.log(test)
+        return newCategoryName
+        //console.log("event listener for submit button. Run function to post submit data to rails")
     })
 }
 
+function displayBlogs(){
 
+}
 
 
 
@@ -80,9 +90,9 @@ const CategoryConfigObj = {
         "Content-Type": "application/json",
         "Accepts": "application/json"
     },
-    body: JSON.stringify({
-        // object properties
-    })
+    body: JSON.stringify()
+        // object properties)
+    
 }
 
 function postNewCategory() {
